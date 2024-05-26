@@ -22,6 +22,6 @@ async function api (page=1) {
       return apiReturn;
     })
     .catch(error => {
-      Bot.logger.err('获取数据失败', error);
+      throw error;
     });
 }
