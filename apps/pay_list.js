@@ -18,9 +18,9 @@ export class xmz_plugin_pay_list extends plugin {
     });
   }
   async list(e) {
-    let state = xmz_.config(func,'state');
+    let state = await xmz_.config(func,'state');
     if (!state) {
-      if (xmz_.config(func,'reply')) {
+      if (await xmz_.config(func,'reply')) {
         e.reply('此功能已被关闭，请联系机器人主人开启',true);
       }
       return true;
@@ -29,10 +29,10 @@ export class xmz_plugin_pay_list extends plugin {
     if (page=='') {
       page = 1;
     }
-    let afdian_key = xmz_.config(func,'afdian_key');
-    let afdian_uid = xmz_.config(func,'afdian_uid');
-    let be_paid_name = xmz_.config(func,'be_paid_name');
-    let be_paid_qq = xmz_.config(func,'be_paid_qq');
+    let afdian_key = await xmz_.config(func,'afdian_key');
+    let afdian_uid = await xmz_.config(func,'afdian_uid');
+    let be_paid_name = await xmz_.config(func,'be_paid_name');
+    let be_paid_qq = await xmz_.config(func,'be_paid_qq');
     if (be_paid_name=='') {
       be_paid_name = Bot.nickname;
     }
@@ -44,7 +44,7 @@ export class xmz_plugin_pay_list extends plugin {
       return true;
     }
     try {
-      let apiReturn = xmz.pay_list.getApi(page);
+      let apiReturn = await xmz.pay_list.getApi(page);
       if (!apiReturn||apiReturn[0]!=='{') {
         e.reply('API返回出现错误，请稍后再试'+apiReturn);
       } else {
