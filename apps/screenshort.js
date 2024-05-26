@@ -25,7 +25,7 @@ export class webScreenShort_xmz extends plugin {
     }
     let reply = xmz.tools.randomArray(xmz_.config('bot','reply')).replace(/{{bot_name}}/gi,name);
     e.reply([segment.at(e.user_id),` \n${reply}`],true);
-    const dir_path = `${xmz_.path}/data/${path}`;
+    const dir_path = `${xmz_.path}/data/screenshort/${path}`;
     const save_path = `${dir_path}/${e.user_id}.png`;
     await xmz.tools.mkdir(dir_path);
     await xmz.puppeteer.url.save(url,save_path);
