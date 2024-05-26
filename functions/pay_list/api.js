@@ -3,8 +3,8 @@ import axios from 'axios';
 import crypto from 'crypto';
 import querystring from 'querystring';
 async function api (page=1) { 
-  const api_key = xmz_.config('pay_list','afdian_key');
-  const api_user_id = xmz_.config('pay_list','afdian_uid');
+  const api_key = await xmz_.config('pay_list','afdian_key');
+  const api_user_id = await xmz_.config('pay_list','afdian_uid');
   const api_url = 'https://afdian.net/api/open/query-sponsor';
   const time = Math.floor(Date.now() / 1000);
   const params = { page:page };
