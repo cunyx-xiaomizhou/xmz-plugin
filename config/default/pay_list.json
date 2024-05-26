@@ -7,7 +7,7 @@
         "be_paid_name": "",
         "be_paid_qq": "",
         "back-img": "",
-        "back-color": ""
+        "back-color": "#E1EFFC"
     },
     "tip": {
         "state": "此功能是否开启(选填true或者false)",
