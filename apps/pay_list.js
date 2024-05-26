@@ -46,7 +46,7 @@ export class xmz_plugin_pay_list extends plugin {
     try {
       let apiReturn = xmz.pay_list.getApi(page);
       if (!apiReturn||apiReturn[0]!=='{') {
-        e.reply('API返回出现错误，请稍后再试');
+        e.reply('API返回出现错误，请稍后再试'+apiReturn);
       } else {
         e.reply('测试消息：API请求成功，但真实性有待确认');
       }
