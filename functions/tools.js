@@ -17,9 +17,16 @@ async function mkdir(dirPath) {
     return false;
   }
 }
+async function randomArray(array) {
+    let length = array.length;
+    let randomIndex = random(0,length - 1);
+    let randomElement = array[randomIndex];
+    return randomElement;
+}
 let tools = {
     sent: sent,
     sleep: sleep,
-    mkdir: mkdir
+    mkdir: mkdir,
+    randomArray: randomArray
 };
 export default tools;
