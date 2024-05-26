@@ -1,9 +1,13 @@
 {
     "config": {
-        "name": "温迪"
+        "name": "",
+        "reply": [
+            "请稍等哦，{{bot_name}}正在生成照片并发送"
+        ]
     },
     "tip": {
-        "name": "机器人名字"
+        "name": "希望显示的机器人名字(若空则显示当前名字)",
+        "reply": "照片生成中返回的文案({{bot_name}}为机器人昵称)"
     },
-    "version": "Beta 0.0.1"
+    "version": "Beta 0.0.2"
 }
