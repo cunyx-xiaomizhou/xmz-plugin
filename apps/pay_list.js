@@ -18,6 +18,13 @@ export class xmz_plugin_pay_list extends plugin {
     });
   }
   async list(e) {
+    let state = xmz_.config(func,'state');
+    if (!state) {
+      if (xmz_.config(func,'reply')) {
+        e.reply('此功能已被关闭，请联系机器人主人开启',true);
+      }
+      return true;
+    }
     let afdian_key = xmz_.config(func,'afdian_key');
     let afdian_uid = xmz_.config(func,'afdian_uid');
     let be_paid_name = xmz_.config(func,'be_paid_name');
