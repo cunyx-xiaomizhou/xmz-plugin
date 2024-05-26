@@ -7,7 +7,7 @@ async function api (page=1) {
   const api_user_id = xmz_.config('pay_list','afdian_uid');
   const api_url = 'https://afdian.net/api/open/query-sponsor';
   const time = Math.floor(Date.now() / 1000);
-  const params = { page };
+  const params = { page:page };
   const signData = `${api_key}params${JSON.stringify(params)}ts${time}user_id${api_user_id}`;
   const sign = crypto.createHash('md5').update(signData).digest('hex');
   const data = {
@@ -22,7 +22,7 @@ async function api (page=1) {
       return apiReturn;
     })
     .catch(error => {
-      throw error;
+      return error;
     });
 }
 export { api };
