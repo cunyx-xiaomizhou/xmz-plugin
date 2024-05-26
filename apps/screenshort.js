@@ -20,7 +20,11 @@ export class webScreenShort_xmz extends plugin {
     let url = e.msg.replace(/网页(截图|预览)|#/gi,'');
     let path = typeof e.group_id === 'number' ? e.group_id : 'friend';
     let name = await xmz_.config('bot','name');
-    e.reply([segment.at(e.user_id),` \n请稍等哦，${name}正在生成照片并发送`],true);
+    if (name=='') {
+      name = Bot.nickname;
+    }
+    let reply = xmz.tools.randomArray(xmz_.config('bot','reply')).replace(/{{bot_name}}/gi,name);
+    e.reply([segment.at(e.user_id),` \n${reply}`],true);
     const dir_path = `${xmz_.path}/data/${path}`;
     const save_path = `${dir_path}/${e.user_id}.png`;
     await xmz.tools.mkdir(dir_path);
