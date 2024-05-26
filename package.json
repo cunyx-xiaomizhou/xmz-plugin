@@ -1,0 +1,11 @@
+{
+  "name": "xmz-plugin",
+  "version": "Beta 0.0.1",
+  "author": "最好喝的小米粥",
+  "description": "我也不知道这是个什么插件",
+  "type": "module",
+  "imports": {
+    "#xmz": "./functions/index.js",
+    "#xmz_": "./config/index.js"
+  }
+}

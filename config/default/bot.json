@@ -1,0 +1,9 @@
+{
+    "config": {
+        "name": "温迪Venti"
+    },
+    "tip": {
+        "name": "机器人名字"
+    },
+    "version": "Beta 0.0.1"
+}
