@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>{{be_paid_name}}的赞助名单</title>
+        <meta charset="UTF-8">
+        <link rel="icon" href="https://q1.qlogo.cn/g?b=qq&s=100&nk={{be_paid_qq}}" type="image/x-icon">
+        <style>
+            * {
+                margin: 0px;
+                padding: 0px;
+            }
+            body {
+                background-color: #E1EFFC;
+                font-family: "divFont",Sans-Serif;
+            }
+            .img {
+                width: 100%;
+                min-height: 500px;
+                max-height: 1500px;
+                background-size: cover;
+                background-position: center;
+                background-image: url("{{background-image_url}}");
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                align-items: center;
+            }
+            @font-face {
+                font-family: "divFont";
+                src: url("{{divFont_url}}");
+            }
+            h1 {
+                padding: 5px;
+                color: #0080FF;
+                font-size: 55px;
+                font-weight: bolder;
+                text-align: center;
+            }
+            .portfolio {
+                display: flex;
+                flex-wrap: wrap;
+                margin: auto;
+                padding: 1pc;
+                width: 92%;
+                border: 2px solid #0000FF;
+                border-radius: 25px;
+            }
+            .work {
+                display: flex;
+                margin: auto;
+                padding: 1vh;
+                width: 42%;
+            }
+            .work-img {
+                display: inline-block;
+                width: 64px;
+                height: 64px;
+                border: 1px solid purple;
+                border-radius: 32px;
+                text-align: left;
+            }
+            .work-name {
+                display: flex;
+                font-size: 32px;
+                color: #009999;
+                align-items: center;
+            }
+            .box {
+                display: flex;
+                justify-content: space-between;
+                margin: 0 auto;
+                width: 80%;
+            }
+            .tip {
+                display: flex;
+                width: 30%;
+                font-size: 32px;
+                text-align: center;
+                justify-content: center;
+                align-items: center;
+            }
+            grey {color:grey;}
+            blue {color:blue;}
+            red {color:red;}
+            a {
+                text-decoration-line: none;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="img">
+            <img src="https://q1.qlogo.cn/g?b=qq&s=0&nk={{be_paid_qq}}" width="200" height="200" style="display:block;border: 1vh solid #FFFFFF;border-radius: 128px;">
+        </div>
+        <h1>{{be_paid_name}}的赞助名单</h1>
+        <div class="portfolio">{{last_body}}</div>
+        <div class="box">
+            <div class="tip"><red>第{{now_page}}/{{all_page}}页</red></div>
+            <div class="tip">发送<blue>#赞助名单[页码]</blue>翻页</div>
+        </div>
+        <div class="box"><div class="tip">{{Copyright_message}}</div></div>
+    </body>
+</html>

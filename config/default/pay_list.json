@@ -1,0 +1,23 @@
+{
+    "config": {
+        "state": false,
+        "reply": true,
+        "afdian_uid": "",
+        "afdian_key": "",
+        "be_paid_name": "",
+        "be_paid_qq": "",
+        "back-img": "",
+        "back-color": ""
+    },
+    "tip": {
+        "state": "此功能是否开启(选填true或者false)",
+        "reply": "若此功能被关闭，是否发送开启提示(选填true或者false)",
+        "afdian_uid": "爱发电的用户唯一id",
+        "afdian_key": "爱发电的开发者密钥",
+        "be_paid_name": "被赞助者的昵称，可写机器人或者主人的",
+        "be_paid_qq": "填写上方人物对应QQ号(上面写的机器人名字就写机器人QQ，写的主人名字就写主人QQ)",
+        "back-img": "顶部图片的链接(必须带http://或file:///)",
+        "back-color": "背景颜色色号(可用#或者rgba的色码)"
+    },
+    "version": "Beta 0.0.1"
+}
