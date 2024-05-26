@@ -18,9 +18,15 @@ export class xmz_plugin_pay_list extends plugin {
     });
   }
   async list(e) {
-    //先检查必须填写的配置文件内容填了吗
     let afdian_key = xmz_.config(func,'afdian_key');
     let afdian_uid = xmz_.config(func,'afdian_uid');
-    //好累啊，不写了 
+    let be_paid_name = xmz_.config(func,'be_paid_name');
+    let be_paid_qq = xmz_.config(func,'be_paid_qq');
+    if (be_paid_name=='') {
+      be_paid_name = Bot.nickname;
+    }
+    if (be_paid_qq=='') {
+      be_paid_qq = Bot.uin;
+    }
   }
 }
