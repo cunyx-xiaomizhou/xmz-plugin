@@ -25,3 +25,4 @@ async function api (page=1) {
       throw error;
     });
 }
+export { api };
