@@ -39,7 +39,7 @@ export class xmz_plugin_pay_list extends plugin {
     if (be_paid_qq=='') {
       be_paid_qq = Bot.uin;
     }
-    if (afdian_key==''||afdian_uif=='') {
+    if (afdian_key==''||afdian_uid=='') {
       e.reply('信息缺失，无法查询。请在小米粥插件下修改配置文件：\n'+xmz_.path+'/config/config');
       return true;
     }
