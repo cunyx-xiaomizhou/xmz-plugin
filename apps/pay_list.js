@@ -71,7 +71,7 @@ export class xmz_plugin_pay_list extends plugin {
               nickname = name;
             }
             let now_html = html_work
-              .replace(/{{name}}/gi,nickname)
+              .replace(/{{userName}}/gi,nickname)
               .replace(/{{avatar_url}}/gi,avatar);
             work_html = work_html + now_html;
           }
