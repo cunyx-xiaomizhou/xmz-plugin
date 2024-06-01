@@ -29,6 +29,9 @@ export class xmz_plugin_pay_list extends plugin {
     if (page=='') {
       page = '1';
     }
+    let bot_name = await xmz_.config('bot','name');
+    if (bot_name=='') bot_name = Bot.nickname;
+    e.reply(`${bot_name}收到您的请求，请稍等~`);
     let afdian_key = await xmz_.config(func,'afdian_key');
     let afdian_uid = await xmz_.config(func,'afdian_uid');
     let be_paid_name = await xmz_.config(func,'be_paid_name');
@@ -85,7 +88,7 @@ export class xmz_plugin_pay_list extends plugin {
             .replace(/{{background-image_url}}/gi,await xmz_.config(func,'back-img'))
             .replace(/{{list_body}}/gi,work_html);
           let bufferData = await xmz.puppeteer.content.buffer(body_html);
-          e.reply(sengment.image(bufferData));
+          e.reply(segment.image(bufferData));
         }
       }
     } catch (err) {
