@@ -54,7 +54,7 @@ export class xmz_plugin_pay_list extends plugin {
           return true;
         } else {
           let apiArray = xmz.pay_list.handle(apiReturn);
-          e.reply(JSON.stringify);
+          e.reply(JSON.stringify(apiArray));
         }
       }
     } catch (err) {
