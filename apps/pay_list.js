@@ -56,7 +56,7 @@ export class xmz_plugin_pay_list extends plugin {
           let apiArray = await xmz.pay_list.handle(apiReturn);
           let money_config = await xmz_.config(func,'money');
           let html_body = await xmz.tools.getRes(func,'body.html');
-          let html_work = await xmz.tools.getRes(func,'work.html');
+          let html_work = await xmz.tools.getRes(func,'user.html');
           let work_html;
           for (let apiIndex = 0;apiIndex < apiArray.length; apiIndex++) {
             // 循环遍历处理后的数组，组成用户列表html
