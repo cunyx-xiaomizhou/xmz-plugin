@@ -54,7 +54,37 @@ export class xmz_plugin_pay_list extends plugin {
           return true;
         } else {
           let apiArray = await xmz.pay_list.handle(apiReturn);
-          e.reply(JSON.stringify(apiArray));
+          let money_config = await xmz_.config(func,'money');
+          let html_body = await xmz.tools.getRes(func,'body.html');
+          let html_work = await xmz.tools.getRes(func,'work.html');
+          let work_html;
+          for (let apiIndex = 0;apiIndex < apiArray.length; apiIndex++) {
+            // 循环遍历处理后的数组，组成用户列表html
+            let ApiData = apiArray[apiIndex];
+            let name = ApiData.name;
+            let avatar = ApiData.avatar;
+            let money = ApiData.money;
+            let nickname;
+            if (money_config!=false) {
+              nickname = name + `（${money}元）`;
+            } else {
+              nickname = name;
+            }
+            let now_html = html_work
+              .replace(/{{name}}/gi,nickname)
+              .replace(/{{avatar_url}}/gi,avatar);
+            work_html = work_html + now_html;
+          }
+          let body_html = html_body
+            .replace(/{{be_paid_qq}}/gi,be_paid_qq)
+            .replace(/{{be_paid_name}}/gi,be_paid_name)
+            .replace(/{{now_page}}/gi,page)
+            .replace(/{{all_page}}/gi,apiJson.data.total_page)
+            .replace(/{{back-color}}/gi,await xmz_.config(func,'back-color'))
+            .replace(/{{divFont_url}}/gi,await xmz_.config(func,'divFont'))
+            .replace(/{{background-image_url}}/gi,await xmz_.config(func,'back-img'))
+            .replace(/{{list_body}}/gi,work_html);
+          e.reply(body_html,true);
         }
       }
     } catch (err) {
