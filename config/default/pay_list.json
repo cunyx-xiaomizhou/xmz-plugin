@@ -8,7 +8,8 @@
         "be_paid_name": "",
         "be_paid_qq": "",
         "back-img": "",
-        "back-color": "#E1EFFC"
+        "back-color": "#E1EFFC",
+        "divFont": ""
     },
     "tip": {
         "state": "此功能是否开启(选填true或者false)",
@@ -19,7 +20,8 @@
         "be_paid_name": "被赞助者的昵称，可写机器人或者主人的",
         "be_paid_qq": "填写上方人物对应QQ号(上面写的机器人名字就写机器人QQ，写的主人名字就写主人QQ)",
         "back-img": "顶部图片的链接(必须带http://或file:///)",
-        "back-color": "背景颜色色号(可用#或者rgba的色码)"
+        "back-color": "背景颜色色号(可用#或者rgba的色码)",
+        "divFont": "自定义字体包链接(可使用网络存储自主上传，请搜索对象储存)"
     },
     "version": "Beta 0.0.2"
 }
