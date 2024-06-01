@@ -12,7 +12,7 @@ async function handle (jsonString) {
       name: userName,
       avatar: userAvatar
     }
-    userDara.push(array);
+    userData.push(array);
   }
   return userData;
 }
