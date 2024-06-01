@@ -53,7 +53,7 @@ export class xmz_plugin_pay_list extends plugin {
           e.reply('API请求失败：\n'+apiJson.em);
           return true;
         } else {
-          let apiArray = xmz.pay_list.handel(apiReturn);
+          let apiArray = xmz.pay_list.handle(apiReturn);
           e.reply(JSON.stringify);
         }
       }
