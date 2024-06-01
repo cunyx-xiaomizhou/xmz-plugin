@@ -19,7 +19,7 @@ async function buffer(htmlString, viewportWidth = 1920, viewportHeight = 1080) {
     const page = await browser.newPage();
     await page.setViewport({ width: viewportWidth, height: viewportHeight });
     await page.setContent(htmlString);
-    await page.waitForNavigation({ waitUntil: 'networkidle2' }); // 等待网络空闲状态
+    await page.waitForNavigation({ waitUntil: 'networkidle2', timeout: 20000 }); // 等待网络空闲状态
     const screenshotBuffer = await page.screenshot({ encoding: 'binary' });
     const bufferData = Buffer.from(screenshotBuffer, 'binary');
     await browser.close();
