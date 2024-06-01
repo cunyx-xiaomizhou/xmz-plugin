@@ -27,7 +27,7 @@ export class xmz_plugin_pay_list extends plugin {
     }
     let page = e.msg.replace(/(赞助|投喂)(名单|列表)|#/gi,'');
     if (page=='') {
-      page = 1;
+      page = '1';
     }
     let afdian_key = await xmz_.config(func,'afdian_key');
     let afdian_uid = await xmz_.config(func,'afdian_uid');
