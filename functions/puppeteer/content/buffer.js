@@ -17,7 +17,7 @@ async function buffer(htmlString, viewportWidth = 1920, viewportHeight = 1080) {
     await browser.close();
     return bufferData;
   } catch (err) {
-    Bot.logger.err('图片生成失败：', err);
+    throw err;
     return false;
   }
 }
