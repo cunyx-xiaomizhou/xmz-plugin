@@ -1,4 +1,5 @@
-import fs from 'fs';
+import xmz_ from '#xmz_';
+import fs from 'fs/promises';
 async function sent(Json) {
     if (typeof Json === 'string') {
         Json = JSON.parse(Json);
@@ -23,10 +24,15 @@ async function randomArray(array) {
     let randomElement = array[randomIndex];
     return randomElement;
 }
+async function getRes (functions, resPath) {
+  const data = await fs.readFile(xmz_.path+'/resource/'+functions+'/'+resPath, 'utf8');
+  return data;
+}
 let tools = {
     sent: sent,
     sleep: sleep,
     mkdir: mkdir,
+    getRes: getRes,
     randomArray: randomArray
 };
 export default tools;
