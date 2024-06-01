@@ -10,7 +10,8 @@ async function handle (jsonString) {
     let userAvatar = user.avatar;
     let array = {
       name: userName,
-      avatar: userAvatar
+      avatar: userAvatar,
+      money: money
     }
     userData.push(array);
   }
