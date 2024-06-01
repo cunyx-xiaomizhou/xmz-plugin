@@ -11,8 +11,8 @@ async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function mkdir(dirPath) {
-  if (!fs.existsSync(dirPath)) {
-    fs.mkdirSync(dirPath, { recursive: true });
+  if (!await fs.access(dirPath)) {
+    await fs.mkdir(dirPath, { recursive: true });
     return true;
   } else {
     return false;
