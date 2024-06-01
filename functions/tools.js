@@ -11,11 +11,14 @@ async function sleep(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
 async function mkdir(dirPath) {
-  if (!await fs.exists(dirPath)) {
-    await fs.mkdir(dirPath, { recursive: true });
-    return true;
-  } else {
+  try {
+    await fs.access(dirPath);
     return false;
+  } catch (err) {
+    if (err.code === 'ENOENT') {
+      await fs.mkdir(dirPath, { recursive: true });
+      return true;
+    }
   }
 }
 async function randomArray(array) {
