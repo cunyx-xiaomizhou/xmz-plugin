@@ -2,7 +2,7 @@ async function handle (jsonString) {
   const Json = JSON.parse(jsonString);
   let list = Json.data.list;
   let userData = [];
-  for (const index = 0; index <= list.length; index++) {
+  for (let index = 0; index <= list.length; index++) {
     let jsonData = list[index];
     let money = jsonData.all_sum_amount;
     let user = jsonData.user;
