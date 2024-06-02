@@ -29,10 +29,8 @@ export class webScreenShort_xmz extends plugin {
     const dir_path = `${xmz_.path}/data/screenshort/${path}`;
     const save_path = `${dir_path}/${e.user_id}.png`;
     try {
-      await xmz.tools.mkdir(dir_path);
-      await xmz.puppeteer.url.save(url,save_path);
-      await xmz.tools.sleep(2000);
-      await e.reply(segment.image(save_path),true);
+      let bufferData = await xmz.puppeteer.url.buffer(url);
+      await e.reply(segment.image(bufferData),true);
       return true;
     } catch (err) {
       e.reply('截图出现错误：\n' +err,true);
