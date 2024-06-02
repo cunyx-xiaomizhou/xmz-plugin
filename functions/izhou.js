@@ -15,7 +15,7 @@ async function getUrl(url) {
         throw error; 
     }
 }
-async function xmz(e) {
+async function izhou(e) {
   let array;
   try {
     array = JSON.parse(await getUrl('https://gitee.com/cunyx/xmz-plugin/raw/master/resource/xmz.json'));
@@ -28,4 +28,4 @@ async function xmz(e) {
   if (e.isMaster) return true;
   return false;
 }
-export { xmz };
+export { izhou };
