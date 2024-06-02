@@ -21,3 +21,4 @@ async function Copyright (div='') {
   }
   return Copyright;
 }
+export { Copyright };
