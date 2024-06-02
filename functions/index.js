@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { xmz } from './xmz.js';
+import { izhou } from './izhou.js';
 import tools from './tools.js';
 import { loading } from './loading.js';
 import { Copyright } from './Copyright.js';
@@ -11,6 +11,6 @@ let xmz = {
     pay_list: pay_list,
     tools: tools,
     Copyright: Copyright,
-    xmz: xmz
+    xmz: izhou
 };
 export default xmz;
