@@ -15,7 +15,7 @@ async function Copyright (div='') {
   let bot_version = Json.version;
   let plugin_name = xmz_.name;
   let plugin_version = xmz_.version;
-  let Copyright = `<b><white>Created By ${Bot_name} <gold>V${bot_version}</gold> && ${plugin_name} <gold>${plugin_version}</gold></b>`;
+  let Copyright = `<b><white>Created By ${Bot_name} <gold>V${bot_version}</gold> && ${plugin_name.en} <gold>${plugin_version}</gold></b>`;
   if (div!='') {
     Copyright = `${Copyright}<br/>${div}`;
   }
