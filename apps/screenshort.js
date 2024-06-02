@@ -28,10 +28,14 @@ export class webScreenShort_xmz extends plugin {
     e.reply([segment.at(e.user_id),` \n${reply}`],true);
     const dir_path = `${xmz_.path}/data/screenshort/${path}`;
     const save_path = `${dir_path}/${e.user_id}.png`;
-    await xmz.tools.mkdir(dir_path);
-    await xmz.puppeteer.url.save(url,save_path);
-    await xmz.tools.sleep(2000);
-    await e.reply(segment.image(save_path),true);
-    return true;
+    try {
+      await xmz.tools.mkdir(dir_path);
+      await xmz.puppeteer.url.save(url,save_path);
+      await xmz.tools.sleep(2000);
+      await e.reply(segment.image(save_path),true);
+      return true;
+    } catch (err) {
+      e.reply('截图出现错误：\n' +err,true);
+    }
   }
 }
