@@ -1,5 +1,6 @@
 # 小米粥插件
 ## 小米粥插件是一个Miao-Yunzai V3 插件，提供一些不知道有用没用的功能
+<div style="margin:auto;"><img alt="群头像" src="http://p.qlogo.cn/gh/682351662/682351662/0"></div>
 ### 安装方法
 - 在机器人根目录下执行以下命令之一：
 ```bash
