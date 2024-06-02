@@ -15,7 +15,8 @@ async function save(url, savePath, viewportWidth = 1920, viewportHeight = 1080) 
     await browser.close();
     return true;
   } catch (err) {
-    Bot.logger.err('网页截图失败：', err);
+    logger.error('网页截图失败：', err);
+    throw err;
     return false;
   }
 }
