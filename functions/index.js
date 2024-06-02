@@ -1,4 +1,5 @@
 import fs from 'fs';
+import { xmz } from './xmz.js';
 import tools from './tools.js';
 import { loading } from './loading.js';
 import { Copyright } from './Copyright.js';
@@ -9,6 +10,7 @@ let xmz = {
     puppeteer: puppeteer,
     pay_list: pay_list,
     tools: tools,
-    Copyright: Copyright
+    Copyright: Copyright,
+    xmz: xmz
 };
 export default xmz;
