@@ -86,7 +86,8 @@ export class xmz_plugin_pay_list extends plugin {
             .replace(/{{back-color}}/gi,await xmz_.config(func,'back-color'))
             .replace(/{{divFont_url}}/gi,await xmz_.config(func,'divFont'))
             .replace(/{{background-image_url}}/gi,await xmz_.config(func,'back-img'))
-            .replace(/{{list_body}}/gi,work_html);
+            .replace(/{{list_body}}/gi,work_html)
+            .replace(/{{Copyright_message}}/gi,xmz.Copyright());
           // e.reply(body_html,true);
           let bufferData = await xmz.puppeteer.content.buffer(body_html);
           e.reply(segment.image(bufferData));
