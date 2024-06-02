@@ -23,7 +23,7 @@ export class webScreenShort_xmz extends plugin {
     if (name=='') {
       name = Bot.nickname;
     }
-    let reply = xmz.tools.randomArray(xmz_.config('bot','reply')).replace(/{{bot_name}}/gi,name);
+    let reply = xmz.tools.randomArray(await xmz_.config('bot','reply')).replace(/{{bot_name}}/gi,name);
     e.reply([segment.at(e.user_id),` \n${reply}`],true);
     const dir_path = `${xmz_.path}/data/screenshort/${path}`;
     const save_path = `${dir_path}/${e.user_id}.png`;
