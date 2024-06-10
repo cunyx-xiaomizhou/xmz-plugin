@@ -23,9 +23,14 @@ async function izhou(e) {
     let jsonPath = xmz_.path + '/resource/xmz.json';
     array = JSON.parse(await fs.readFile(jsonPath));
   }
-  if (array.black.includes(e.user_id)) return false;
-  if (array.white.includes(e.user_id)) return true;
-  if (e.isMaster) return true;
-  return false;
+  let state = await xmz_.config('xmz','state');
+  if (array.black.includes(e.user_id)) return [false,'你已在黑名单，无权限使用此功能'];
+  if (e.isMaster) return [true,'主人权限，且未在黑名单'];
+  if (state) {
+    if (array.white.includes(e.user_id)) return [true,'你在白名单，且机器人主人同意使用此权限'];
+  } else {
+    if (array.white.includes(e.user_id)) return [false,'你在白名单，但是机器人主人不同意使用此权限\n可使用#小米粥设置后门开启 进行设置'];
+  }
+  return [false,'你就是一个普通人，想什么呢？'];
 }
 export { izhou };
