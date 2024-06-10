@@ -1,17 +1,19 @@
 {
     "config": {
-        "state": true,
+        "group": [
+            682351662
+        ],
         "min": 60,
         "max": 300,
         "cd-person": 600,
         "cd-group": 30
     },
     "tip": {
-        "state": "是否开启禁言大转盘",
+        "group": "开启禁言大转盘的群聊",
         "min": "禁言大转盘最短时间(单位秒)",
         "max": "禁言大转盘最长时间(单位秒)",
         "cd-person": "每个人玩一次禁言大转盘的间隔(单位秒)",
         "cd-group": "群聊每进行一次禁言大转盘的间隔(单位秒)"
     },
-    "version": "Beta 0.0.2"
+    "version": "Beta 0.0.3"
 }
