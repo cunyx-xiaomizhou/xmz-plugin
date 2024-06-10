@@ -13,20 +13,18 @@ export class banTurntable_xmz_plugin extends plugin {
       priority:1,/*优先级*/
       rule:[
         {
-          reg:"^#?禁言大转盘",
-          fnc:"play"
+          reg:"^#?(开启|关闭)禁言大转盘",
+          fnc:"switches"
         }
       ]
     });
   }
   async switches(e) {
-    const groupArray = await xmz_.config(func,'group');
-    let state = false;
-    for (let index = 0; groupArray.length() <= index; index++) {
-      if (groupArray[index] == e.group_id) state = true;
-    }
+    let state = await xmz_.comfig(func,'state');
     if (state) {
-      //开启的处理方法
+      const dataPath = `${xmz_.path}/data/${func}`;
+      const filePath = `${dataPath}/${e.group_id}.json`;
+      await xmz.tools.mkdir(dataPath)
     } else {
       e.reply(`此功能未开启，请联系机器人主人在${xmz_.path}/config/config/${func}.json中开启`,true);
     }
