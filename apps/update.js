@@ -22,7 +22,7 @@ export class xmzPlugin_update extends plugin {
   async update_plugin(e){
     const state = await xmz.xmz(e);
     if (!state[0]) {
-      e.reply(state[1,true]);
+      e.reply(state[1],true);
       return true;     
     }
     let Update_Plugin = new update();
