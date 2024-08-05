@@ -14,8 +14,12 @@ export class banTurntable_xmz_plugin extends plugin {
       priority:1,/*优先级*/
       rule:[
         {
-          reg:"^#?(开启|关闭)禁言大转盘",
+          reg:"^#?(开启|关闭)禁言大转盘$",
           fnc:"switches"
+        },
+        {
+            reg: "^#?禁言大转盘$",
+            fnc: "bt"
         }
       ]
     });
@@ -46,5 +50,8 @@ export class banTurntable_xmz_plugin extends plugin {
     } else {
       e.reply(`此功能未开启，请联系机器人主人在${xmz_.path}/config/config/${func}.json中开启`,true);
     }
+  }
+  async bt(e) {
+    // 我是小鸽子
   }
 }
