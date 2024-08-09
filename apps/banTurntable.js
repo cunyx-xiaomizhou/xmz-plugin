@@ -31,7 +31,7 @@ export class banTurntable_xmz_plugin extends plugin {
       return false;
     }
     let state = xmz.xmz(e);
-    if (!(state(e)[0] || (e.member.is_admin || e.member.is_owner))) {
+    if (!(state[0] || (e.member.is_admin || e.member.is_owner))) {
       e.reply('❌ 你没有权限执行此操作，'+state[1],true);
       return false;
     }
