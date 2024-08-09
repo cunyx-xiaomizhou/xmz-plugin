@@ -83,7 +83,7 @@ export class banTurntable_xmz_plugin extends plugin {
     }
     if (Data.cd.member[e.user_id] > Date.now()) {
       ti = (Data.cd.member[e.user_id] - Date.now()) / 1000;
-      e.reoly('❌ 您的禁言大转盘正在冷却，请' + ti + '秒后再试.....',true);
+      e.reply('❌ 您的禁言大转盘正在冷却，请' + ti + '秒后再试.....',true);
       return true;
     }
     const min = await xmz_.config(func,'min');
@@ -95,7 +95,7 @@ export class banTurntable_xmz_plugin extends plugin {
     const t = await xmz.tools.random(min, max);
     await e.group.muteMember(e.user_id, t);
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
-    Data.cd.group = Date.now + cd.g * 1000;
+    Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒',true);
   }
