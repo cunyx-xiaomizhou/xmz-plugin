@@ -42,6 +42,7 @@ async function getRes(functions, resPath) {
 }
 
 let tools = {
+  random: random,
   sent: sent,
   sleep: sleep,
   mkdir: mkdir,
