@@ -75,6 +75,10 @@ export class banTurntable_xmz_plugin extends plugin {
       e.reply('❌ 本群还没有数据文件，请先#开启禁言大转盘',true);
       return true;
     }
+    if (!Data.state) {
+      e.reply('❌ 功能暂未开启，请先#开启禁言大转盘',true);
+      return true;
+    }
     let ti;
     if (Data.cd.group > Date.now()) {
       ti = (Data.cd.group - Date.now()) / 1000;
