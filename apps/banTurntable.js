@@ -96,7 +96,7 @@ export class banTurntable_xmz_plugin extends plugin {
     await e.group.muteMember(e.user_id, t);
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
     Data.cd.group = Date.now + cd.g * 1000;
-    await fs.writeFile(dataPath, await xmz.tools.sent(Data));
+    await fs.writeFile(filePath, await xmz.tools.sent(Data));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒',true);
   }
 }
