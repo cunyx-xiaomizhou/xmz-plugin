@@ -86,11 +86,11 @@ export class banTurntable_xmz_plugin extends plugin {
       e.reply('❌ 您的禁言大转盘正在冷却，请' + ti + '秒后再试.....',true);
       return true;
     }
-    const min = await xmz_.config(func,'min');
-    const max = await xmz_.config(func,'max');
+    const min = await xmz_.config(func,'min',e.group_id);
+    const max = await xmz_.config(func,'max',e.group_id);
     const cd = {
-      p: await xmz_.config(func,'cd-person'),
-      g: await xmz_.config(func,'cd-group')
+      p: await xmz_.config(func,'cd-person',e.group_id),
+      g: await xmz_.config(func,'cd-group',e.group_id)
     };
     const t = await xmz.tools.random(min, max);
     await e.group.muteMember(e.user_id, t);
