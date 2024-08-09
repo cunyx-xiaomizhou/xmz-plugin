@@ -30,7 +30,7 @@ export class banTurntable_xmz_plugin extends plugin {
       e.reply('❌ 此功能仅能在群聊里使用',true);
       return false;
     }
-    let state = xmz.xmz(e);
+    let state = await xmz.xmz(e);
     if (!(state[0] || (e.member.is_admin || e.member.is_owner))) {
       e.reply('❌ 你没有权限执行此操作，'+state[1],true);
       return false;
@@ -92,11 +92,11 @@ export class banTurntable_xmz_plugin extends plugin {
       p: await xmz_.config(func,'cd-person'),
       g: await xmz_.config(func,'cd-group')
     };
-    const t = xmz.tools.random(min, max);
+    const t = await xmz.tools.random(min, max);
     await e.group.muteMember(e.user_id, t);
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
     Data.cd.group = Date.now + cd.g * 1000;
-    await fs.writeFile(dataPath, xmz.tools.sent(Data));
+    await fs.writeFile(dataPath, await xmz.tools.sent(Data));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒',true);
   }
 }
