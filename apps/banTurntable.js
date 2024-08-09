@@ -51,7 +51,7 @@ export class banTurntable_xmz_plugin extends plugin {
         }
       };
     }
-    await fs.writeFile(filePath, xmz.tools.sent(Data));
+    await fs.writeFile(filePath, await xmz.tools.sent(Data));
     e.reply('✅ 本群禁言大转盘状态已更新');
   }
   async bt(e) {
