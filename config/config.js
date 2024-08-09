@@ -4,6 +4,6 @@ async function config(fileName, key, Key='default') {
   let filePath = config_path + fileName + '.json';
   let content = await fs.readFileSync(filePath);
   let Json = await JSON.parse(content);
-  return (Key=='default') ? Json.config[key] : Json.config[Key][key];
+  return (Key=='default') ? Json.config[key] : (Json.config[Key][key]) ? Json.config[Key][key] : Json.config[key];
 }
 export { config };
