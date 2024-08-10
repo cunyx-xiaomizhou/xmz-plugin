@@ -135,7 +135,7 @@ export class banTurntable_xmz_plugin extends plugin {
       qq = e.user_id;
     }
     Data.cd.member[qq] = Date.now();
-    Data.cd.group = Data.now();
+    Data.cd.group = Date.now();
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     e.reply('✅ 本群cd和用户'+qq+'的cd已成功清除！',true);
   }
