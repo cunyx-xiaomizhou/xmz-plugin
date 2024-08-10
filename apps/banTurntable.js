@@ -69,6 +69,7 @@ export class banTurntable_xmz_plugin extends plugin {
     }
     if (!(e.group.is_admin || e.group.is_owner)) {
       e.reply('❌ 机器人非管理员/群主，无法使用此功能');
+      return true;
     }
     await xmz.tools.mkdir(dataPath);
     const filePath = `${dataPath}/${e.group_id}.json`;
@@ -113,7 +114,7 @@ export class banTurntable_xmz_plugin extends plugin {
       return true;
     }
     const state = await xmz.xmz(e);
-    if (!state[0]) {
+    if (!(state[0] || (e.member.is_admin || e.member.is_owner))) {
       e.reply('❌ 你没有权限执行此操作，'+state[1],true);
       return true;
     }
