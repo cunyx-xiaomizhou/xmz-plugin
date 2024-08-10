@@ -112,7 +112,7 @@ export class banTurntable_xmz_plugin extends plugin {
       e.reply('❌ 此功能仅能在群聊里使用',true);
       return true;
     }
-    const state = xmz.xmz(e);
+    const state = await xmz.xmz(e);
     if (!state[0]) {
       e.reply('❌ 你没有权限执行此操作，'+state[1],true);
       return true;
