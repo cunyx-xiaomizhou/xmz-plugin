@@ -21,6 +21,10 @@ export class banTurntable_xmz_plugin extends plugin {
         {
             reg: "^#禁言大转盘$",
             fnc: "bt"
+        },
+        {
+            reg: /^#?清除cd(.*)?/gi,
+            fnc: "clear"
         }
       ]
     });
@@ -102,5 +106,37 @@ export class banTurntable_xmz_plugin extends plugin {
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒',true);
+  }
+  async clear(e) {
+    if (!e.group_id) {
+      e.reply('❌ 此功能仅能在群聊里使用',true);
+      return true;
+    }
+    const state = xmz.xmz(e);
+    if (!state[0]) {
+      e.reply('❌ 你没有权限执行此操作，'+state[1],true);
+      return true;
+    }
+    await xmz.tools.mkdir(dataPath);
+    const filePath = `${dataPath}/${e.group_id}.json`;
+    let Data;
+    try {
+      Data = JSON.parse(await fs.readFile(filePath));
+    } catch (err) {
+      e.reply('❌ 本群还没有数据文件，请先#开启禁言大转盘',true);
+      return true;
+    }
+    let qq;
+    qq = e.msg.replace(/清除cd|#/gi, '').trim();
+    if (qq=='') {
+      qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
+    }
+    if (qq=='') {
+      qq = e.user_id;
+    }
+    Data.cd.member[qq] = Date.now();
+    Data.cd.group = Data.now();
+    await fs.writeFile(filePath, await xmz.tools.sent(Data));
+    e.reply('✅ 本群cd和用户'+qq+'的cd已成功清除！',true);
   }
 }
