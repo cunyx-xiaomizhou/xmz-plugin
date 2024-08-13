@@ -19,7 +19,7 @@ export class banTurntable_xmz_plugin extends plugin {
           fnc:"switches"
         },
         {
-            reg: "^#禁言大转盘$",
+            reg: "^#禁言大转盘(.*)?",
             fnc: "bt"
         },
         {
@@ -63,9 +63,19 @@ export class banTurntable_xmz_plugin extends plugin {
       e.reply('❌ 此功能仅能在群聊里使用',true);
       return false;
     }
+    let qq;
     if (e.member.is_admin || e.member.is_owner) {
-      e.reply('❌ 你是管理员/群主，可以参与游戏，但不会禁言');
-      await xmz.tools.sleep(2000);
+      qq = e.msg.replace(/禁言大转盘|#/gi, '').trim();
+      if (qq=='') {
+        qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
+      }
+      if (qq=='') {
+        qq = e.user_id;
+        e.reply('❌ 您是本群的头头，我不敢禁言你，我还是开个玩笑吧.....',true);
+        await xmz.tools.sleep(2000);
+      }
+    } else {
+      qq = e.user_id;
     }
     if (!(e.group.is_admin || e.group.is_owner)) {
       e.reply('❌ 机器人非管理员/群主，无法使用此功能');
@@ -102,7 +112,7 @@ export class banTurntable_xmz_plugin extends plugin {
       g: await xmz_.config(func,'cd-group',e.group_id)
     };
     const t = await xmz.tools.random(min, max);
-    await e.group.muteMember(e.user_id, t);
+    await e.group.muteMember(qq, t);
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
