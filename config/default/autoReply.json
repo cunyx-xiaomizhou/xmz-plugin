@@ -1,0 +1,31 @@
+{
+    "config": {
+        "condition": true,
+        "reply": true,
+        "precise": false,
+        "model": "index",
+        "content": {
+            "早": [
+                "早上好呀！",
+                "嗯嗯，早呀~"
+            ],
+            "晚": [
+                "晚上好呀！",
+                "小笨蛋晚上好~"
+            ]
+        }
+    },
+    "tip": {
+        "condition": "是否开启此功能",
+        "reply": "关闭触发时是否回复开启提示",
+        "precise": "是否开启精准模式",
+        "model": "文案模式，可选index和add，默认index，add为本群自定义+默认",
+        "content": {
+            "正则表达式主要文字": [
+                "回复内容_1",
+                "回复内容_2"
+            ]
+        }
+    },
+    "version": ""
+}
