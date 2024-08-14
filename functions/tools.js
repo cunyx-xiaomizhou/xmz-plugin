@@ -68,9 +68,12 @@ async function uc (fileName, key, Value='', group='') {
   json = JSON.parse(await fs.readFile(c));
   json.tip = tip;
   json.version = v;
-  if (group='') {
+  if (group=='') {
     json.config[key] = Value;
   } else {
+    if (!group in json.config) {
+      json.config[group] = {};
+    }
     json.config[group][key] = Value;
   }
   await fs.writeFile(c,await sent(json));
