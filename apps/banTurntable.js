@@ -118,7 +118,7 @@ export class banTurntable_xmz_plugin extends plugin {
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     let coinb = await xmz_.config(func,'coin',e.group_id);
-    let coinb_s;
+    let coinb_s = [true];
     if (coinb==undefined||coinb==null) {
       coinb_s = await xmz.tools.uc(func, 'coin');
     }
@@ -127,7 +127,7 @@ export class banTurntable_xmz_plugin extends plugin {
       return true;
     }
     let is_public = await xmz_.config(func,'public',e.group_id);
-    let is_public_s;
+    let is_public_s = [true];
     if (is_public==undefined||is_public==null) {
       is_public_s = await xmz.tools.uc(func,'public');
     }
@@ -151,7 +151,7 @@ export class banTurntable_xmz_plugin extends plugin {
     }
     await fs.writeFile(coinFile, await xmz.tools.sent(jsonCoin));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒，并获得'+m+'枚米粥币',true);
-    e.reply('测试环境：\n\n'+coinb_s[1]+'\n\n'+is_public_s[1],true);
+  //  e.reply('测试环境：\n\n'+coinb_s[1]+'\n\n'+is_public_s[1],true);
   }
   async clear(e) {
     if (!e.group_id) {
