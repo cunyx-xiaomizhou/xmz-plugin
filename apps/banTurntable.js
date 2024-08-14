@@ -5,6 +5,7 @@ import plugin from './../../../lib/plugins/plugin.js';
 
 const func = 'banTurntable';
 const dataPath = `${xmz_.path}/data/${func}`;
+const coinFile = `${xmz_.path}/data/coin.json`;
 
 export class banTurntable_xmz_plugin extends plugin {
   constructor () {
@@ -116,7 +117,26 @@ export class banTurntable_xmz_plugin extends plugin {
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
-    e.reply('✅ 随机完成，已把你禁言'+t+'秒',true);
+    let coinb;
+    try {
+      coinb = await xmz.config(func,'coin',e.group_id);
+    } catch (err) {
+      await xmz.tools.uc(func, 'coin')
+      coinb = await xmz.config(func,'coin',e.group_id);
+    }
+    let mod = t % 60;
+    let m = ((t - mod) / 60 ) + 1;
+    let jsonCoin;
+    try {
+      jsonCoin = JSON.parse(await fs.readFile(coinFile));
+      jsonCoin[qq] += m * coinb;   
+    } catch (err) {
+      jsonCoin = {
+        [qq]: m * coinb,
+      }
+    }
+    await fs.writeFile(coinFile, await xmz.tools.sent(jsonCoin));
+    e.reply('✅ 随机完成，已把你禁言'+t+'秒，并获得'+m+'枚米粥币',true);
   }
   async clear(e) {
     if (!e.group_id) {
