@@ -139,19 +139,20 @@ export class banTurntable_xmz_plugin extends plugin {
     let m = ((t - mod) / 60 ) + 1;
     let jsonCoin;
     let key_model = is_public ? 'member' : e.group_id;
+    let tn = m * coinb;
     try {
       jsonCoin = JSON.parse(await fs.readFile(coinFile));
-      jsonCoin[key_model][qq] = jsonCoin[qq] + m * coinb;   
+      jsonCoin[key_model][qq] = jsonCoin[qq] + tn;
     } catch (err) {
       jsonCoin = {
         [key_model]:{
-          [qq]: m * coinb
+          [qq]: tn
         }
       }
     }
     await fs.writeFile(coinFile, await xmz.tools.sent(jsonCoin));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒，并获得'+m+'枚米粥币',true);
-    e.reply(`测试环境：\ncoinb：${coinb}\ntruthNum：${coinb*m}`,true);
+    e.reply(`测试环境：\ncoinb：${coinb}\ntruthNum：${tn}`,true);
   }
   async clear(e) {
     if (!e.group_id) {
