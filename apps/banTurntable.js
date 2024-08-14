@@ -119,10 +119,10 @@ export class banTurntable_xmz_plugin extends plugin {
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     let coinb;
     try {
-      coinb = await xmz.config(func,'coin',e.group_id);
+      coinb = await xmz_.config(func,'coin',e.group_id);
     } catch (err) {
       await xmz.tools.uc(func, 'coin')
-      coinb = await xmz.config(func,'coin',e.group_id);
+      coinb = await xmz_.config(func,'coin',e.group_id);
     }
     let mod = t % 60;
     let m = ((t - mod) / 60 ) + 1;
