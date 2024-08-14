@@ -117,20 +117,10 @@ export class banTurntable_xmz_plugin extends plugin {
     Data.cd.member[e.user_id] = Date.now() + cd.p * 1000;
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
-    let coinb;
-    try {
-      coinb = await xmz_.config(func,'coin',e.group_id);
-    } catch (err) {
-      await xmz.tools.uc(func, 'coin')
-      coinb = await xmz_.config(func,'coin',e.group_id);
-    }
-    let is_public;
-    try {
-      is_public = await xmz_.config(func,'public',e.group_id);
-    } catch (err) {
-      await xmz.tools.uc(func,'public');
-      is_public = await xmz_.config(func,'public',e.group_id);
-    }
+    let coinb = await xmz_.config(func,'coin',e.group_id);
+    if (coinb==undefined||coinb==null) await xmz.tools.uc(func, 'coin');
+    let is_public = await xmz_.config(func,'public',e.group_id);
+    if (is_public==undefined||is_public==null) await xmz.tools.uc(func,'public');
     let mod = t % 60;
     let m = ((t - mod) / 60 ) + 1;
     let jsonCoin;
