@@ -41,13 +41,49 @@ async function getRes(functions, resPath) {
   return data;
 }
 
+async function uc (fileName, key, Value='', group='') {
+  const df = `${xmz_.path}/config/default/${fileName},json`;
+  const udf = `https://gitee.com/cunyx/xmz-plugin/raw/master/config/default/${fileName},json`;
+  let json;
+  let tip;
+  let v;
+  if (Value=='') {
+    try {
+      json = JSON.parse(await fs.readFile(df));
+      Value = json.config[key];
+      tip = json.tip;
+      v = json.version;
+    } catch (err) {
+      try {
+        json = await fetch(udf).json();
+        tip = json.tip;
+        Value = json.config[key]; 
+        v = json.version;
+      } catch (e) {
+        return [false,err+'\n\n'+e];
+      }
+    }
+  }
+  const c = `${xmz_.path}/config/config/${fileName}.json`;
+  json = await fs.readFile(c);
+  json.tip = tip;
+  json.version = v;
+  if (group='') {
+    json.config[key] = Value;
+  } else {
+    json.config[group][key] = Value;
+  }
+  await fs.writeFile(c,await sent(json));
+  return [true];
+}
 let tools = {
   random: random,
   sent: sent,
   sleep: sleep,
   mkdir: mkdir,
   getRes: getRes,
-  randomArray: randomArray
+  randomArray: randomArray,
+  uc: uc
 };
 
 export default tools;
