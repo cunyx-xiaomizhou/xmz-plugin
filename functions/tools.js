@@ -42,7 +42,7 @@ async function getRes(functions, resPath) {
 }
 
 async function uc (fileName, key, Value='', group='') {
-  const df = `${xmz_.path}/config/default/${fileName},json`;
+  const df = `${xmz_.path}/config/default/${fileName}.json`;
   const udf = `https://gitee.com/cunyx/xmz-plugin/raw/master/config/default/${fileName},json`;
   let json;
   let tip;
