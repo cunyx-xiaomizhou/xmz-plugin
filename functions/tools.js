@@ -77,7 +77,7 @@ async function uc (fileName, key, Value='', group='') {
     json.config[group][key] = Value;
   }
   await fs.writeFile(c,await sent(json));
-  return [true];
+  return [true, await sent(json)];
 }
 let tools = {
   random: random,
