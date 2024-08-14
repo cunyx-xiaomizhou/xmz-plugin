@@ -8,25 +8,30 @@ export class xmz_plugin_loading extends plugin {
       name:"重载配置",
       dsc:"小米粥插件重新初始化",
       event:"message",
-      priority:1,/*优先级*/
+      priority:-115149494,/*优先级*/
       rule:[
         {reg:/^#?(小米粥|xmz)(插件|(-)?plugin)(初始化|重载(配置)?)/gi,fnc:"loading"}
       ]
     });
   }
   async loading (e) {
-    const state = await xmz.xmz(e);
-    if (!state[0]) {
-      e.reply('❌ 无权限，'+state[1],true);
-      return true;
-    }
-    const defDir = xmz_.path + '/config/default';
-    const configDir = xmz_.path + '/config/config';
+    e.reply('开始进行初始化，请不要执行重启等操作....',true);
     try {
-      await xmz.loading(configDir,defDir);
-      e.reply('✅ 小米粥插件重新初始化成功！',true);
+      const state = await xmz.xmz(e);
+      if (!state[0]) {
+        e.reply('❌ 无权限，'+state[1],true);
+        return true;
+      }
+      const defDir = xmz_.path + '/config/default';
+      const configDir = xmz_.path + '/config/config';
+      try {
+        await xmz.loading(configDir,defDir);
+        e.reply('✅ 小米粥插件重新初始化成功！',true);
+      } catch (err) {
+        e.reply('❌ 重载失败：\n'+err,true);
+      }
     } catch (err) {
-      e.reply('❌ 重载失败：\n'+err,true);
+      e.reply('❌ 执行失败：\n'+err,true)
     }
   }
 }
