@@ -151,7 +151,7 @@ export class banTurntable_xmz_plugin extends plugin {
     }
     await fs.writeFile(coinFile, await xmz.tools.sent(jsonCoin));
     e.reply('✅ 随机完成，已把你禁言'+t+'秒，并获得'+m+'枚米粥币',true);
-  //  e.reply('测试环境：\n\n'+coinb_s[1]+'\n\n'+is_public_s[1],true);
+    e.reply(`测试环境：\ncoinb：${coinb}\ntruthNum：${coinb*m}`,true);
   }
   async clear(e) {
     if (!e.group_id) {
