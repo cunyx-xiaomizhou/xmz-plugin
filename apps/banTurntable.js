@@ -118,9 +118,17 @@ export class banTurntable_xmz_plugin extends plugin {
     Data.cd.group = Date.now() + cd.g * 1000;
     await fs.writeFile(filePath, await xmz.tools.sent(Data));
     let coinb = await xmz_.config(func,'coin',e.group_id);
-    if (coinb==undefined||coinb==null) await xmz.tools.uc(func, 'coin');
+    if (coinb==undefined||coinb==null) const coinb_s = await xmz.tools.uc(func, 'coin');
+    if (!coinb_s[0]) {
+      e.reply('❌ 更新配置文件参数coin失败：\n'+coinb_s[1],true);
+      return true;
+    }
     let is_public = await xmz_.config(func,'public',e.group_id);
-    if (is_public==undefined||is_public==null) await xmz.tools.uc(func,'public');
+    if (is_public==undefined||is_public==null) const is_public_s = await xmz.tools.uc(func,'public');
+    if (!is_public_s[0]) {
+      e.reply('❌ 更新配置文件参数public失败：\n'+is_public_s[1],true);
+      return true;
+    }
     let mod = t % 60;
     let m = ((t - mod) / 60 ) + 1;
     let jsonCoin;
