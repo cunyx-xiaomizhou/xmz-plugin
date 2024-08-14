@@ -43,42 +43,47 @@ async function getRes(functions, resPath) {
 
 async function uc (fileName, key, Value='', group='') {
   const df = `${xmz_.path}/config/default/${fileName}.json`;
-  const udf = `https://gitee.com/cunyx/xmz-plugin/raw/master/config/default/${fileName},json`;
+  const udf = `https://gitee.com/cunyx/xmz-plugin/raw/master/config/default/${fileName}.json`;
   let json;
   let tip;
   let v;
-  if (Value=='') {
-    try {
-      json = JSON.parse(await fs.readFile(df));
-      Value = json.config[key];
-      tip = json.tip;
-      v = json.version;
-    } catch (err) {
+
+  try {
+    if (Value === '') {
       try {
-        json = await fetch(udf).json();
+        json = JSON.parse(await fs.readFile(df));
+        Value = json.config[key];
         tip = json.tip;
-        Value = json.config[key]; 
         v = json.version;
-      } catch (e) {
-        return [false,err+'\n\n'+e];
+      } catch (err) {
+        json = await fetch(udf).then(response => response.json());
+        tip = json.tip;
+        Value = json.config[key];
+        v = json.version;
       }
     }
-  }
-  const c = `${xmz_.path}/config/config/${fileName}.json`;
-  json = JSON.parse(await fs.readFile(c));
-  json.tip = tip;
-  json.version = v;
-  if (group=='') {
-    json.config[key] = Value;
-  } else {
-    if (!group in json.config) {
-      json.config[group] = {};
+
+    const c = `${xmz_.path}/config/config/${fileName}.json`;
+    json = JSON.parse(await fs.readFile(c));
+    json.tip = tip;
+    json.version = v;
+
+    if (group === '') {
+      json.config[key] = Value;
+    } else {
+      if (!(group in json.config)) {
+        json.config[group] = {};
+      }
+      json.config[group][key] = Value;
     }
-    json.config[group][key] = Value;
+
+    await fs.writeFile(c, await sent(json));
+    return [true, await sent(json)];
+  } catch (err) {
+    return [false, err.toString()];
   }
-  await fs.writeFile(c,await sent(json));
-  return [true, await sent(json)];
 }
+
 let tools = {
   random: random,
   sent: sent,
