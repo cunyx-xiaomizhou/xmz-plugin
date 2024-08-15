@@ -44,7 +44,7 @@ export class porridgeCoin_xmz_plugin extends plugin {
       const name = Member.card || Member.nickname;
       msg = [
         segment.at(e.user_id),
-        `\n你查询的用户【${name}】(${qq})米粥币信息如下：`,
+        `\n\n你查询的用户【${name}(${qq})】米粥币信息如下：`,
         `\n本群米粥币：${member.group}`,
         `\n私有米粥币：${member.mine}`,
         `\n🐷：想要查看其他群聊请在相应群聊查看`,
@@ -52,7 +52,7 @@ export class porridgeCoin_xmz_plugin extends plugin {
       ];
     } else {
       msg = [
-        `\n你查询的用户【${qq}】米粥币信息如下：`,
+        `\n\n你查询的用户【${qq}】米粥币信息如下：`,
         `\n私有米粥币：${member.mine}`,
         `\n🐷：想要查看其他群聊请在相应群聊查看`,
         segment.image(`https://q1.qlogo.cn/g?b=qq&s=100&nk=${qq}`)
