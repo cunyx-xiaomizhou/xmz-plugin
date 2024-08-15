@@ -142,10 +142,10 @@ export class banTurntable_xmz_plugin extends plugin {
     let tn = m * coinb;
     try {
       jsonCoin = JSON.parse(await fs.readFile(coinFile));
-      if (!key_model in jsonCoin) {
+      if (!(key_model in jsonCoin)) {
         jsonCoin[key_model] = {};
       }
-      if (!qq in jsonCoin[key_model]) {
+      if (!(qq in jsonCoin[key_model])) {
         jsonCoin[key_model][qq] = 0;
       }
       jsonCoin[key_model][qq] = jsonCoin[key_model][qq] + tn;
