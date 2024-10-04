@@ -58,6 +58,7 @@ export class xmz_ban extends plugin {
       return true;
     } else if (qq!=''&&!if_para) {
       e.reply('❌ 请不要给自己戴口球！',true);
+      e.reply(`❌ 你让作者很难办哦，请截图以下信息反馈：\n\ne.msg：${e.msg}\nqq：${qq}\npara：${para}\n禁言时长：${ban_time}`);
       return true;
     } else {
       // 其他情况
