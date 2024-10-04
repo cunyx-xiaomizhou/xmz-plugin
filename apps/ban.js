@@ -101,9 +101,9 @@ export class xmz_ban extends plugin {
       ban_time = Math.floor(ban_time * 60);
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
-    let { is_admin, is_owner } = e.group.pickMember(qq);
     try {
-      if ((is_admin || is_owner) && !(e.member.is_admin || e.member.is_owner)) {
+      let role = await Bot.pickGroup(e.group_id, true).pickMember(qq).info.role;
+      if (role=='admin'||role=='owner') {
         e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
         qq = e.user_id;
       } else if (e.member.is_admin || e.member.is_owner) {
