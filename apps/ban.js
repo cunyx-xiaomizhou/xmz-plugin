@@ -1,4 +1,9 @@
+import fs from 'fs/promises';
+import xmz from '#xmz';
+import xmz_ from '#xmz_';
 import plugin from './../../../lib/plugins/plugin.js';
+
+const coinFile = `${xmz_.path}/data/coin.json`;
 
 export class xmz_ban extends plugin {
   constructor () {
@@ -34,7 +39,6 @@ export class xmz_ban extends plugin {
       await xmz.tools.sleep(2000);
     }
     e.reply(`✅ 被操作者QQ号：${qq}`,true);
-    const coinFile = `${xmz_.path}/data/coin.json`;
     let json;
     try {
       json = JSON.parse(await fs.readFile(coinFile));
