@@ -25,7 +25,7 @@ export class xmz_ban extends plugin {
       return true;
     }
     let qq;
-    qq = e.msg.replace(/禁言大转盘|#/gi, '').trim();
+    qq = e.msg.replace(/口球|#/gi, '').trim();
     if (qq=='') {
       qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
     }
@@ -49,27 +49,7 @@ export class xmz_ban extends plugin {
       member.group = false;
     }
     member.mine = (member in json&&qq in json.member) ? json.member[qq] + '枚' : '未拥有';
-    let msg;
-    if (member.group) {
-      const Member = e.group.pickMember(Number(qq) || qq);
-      const name = Member.card || Member.nickname;
-      msg = [
-        segment.at(e.user_id),
-        `\n\n你查询的用户【${name}(${qq})】米粥币信息如下：`,
-        `\n本群米粥币：${member.group}`,
-        `\n私有米粥币：${member.mine}`,
-        `\n🐷：想要查看其他群聊请在相应群聊查看`,
-        segment.image(`https://q1.qlogo.cn/g?b=qq&s=100&nk=${qq}`)
-      ];
-    } else {
-      msg = [
-        `\n\n你查询的用户【${qq}】米粥币信息如下：`,
-        `\n私有米粥币：${member.mine}`,
-        `\n🐷：想要查看其他群聊请在相应群聊查看`,
-        segment.image(`https://q1.qlogo.cn/g?b=qq&s=100&nk=${qq}`)
-      ];
-    }
-    e.reply(msg,true);
+    e.reply(`✅ 被操作用户本群米粥币：${member.group}`,true);
     return true;
   }
 }
