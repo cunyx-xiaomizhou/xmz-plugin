@@ -102,10 +102,11 @@ export class xmz_ban extends plugin {
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
     try {
-      let role = await Bot.pickGroup(e.group_id, true).pickMember(qq).info.role;
-      if (role=='admin'||role=='owner') {
+      let pick = await e.group.pickMember(qq);
+      if (pick.is_admin || pick.is_owner) {
         e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
         qq = e.user_id;
+        return true;
       } else if (e.member.is_admin || e.member.is_owner) {
         e.reply('❌ 管理之间至于这么狠嘛😳....',true);
         return true;
