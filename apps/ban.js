@@ -97,7 +97,10 @@ export class xmz_ban extends plugin {
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
     try {
-      if (Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_admin || Bot.pickGroup(e.group_id,true).pickMember(qq).is_owner) {
+      if (
+          Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_admin ||
+          Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_owner
+        ) {
         if (e.member.is_admin || e.member.is_owner) {
           e.reply('❌ 管理之间至于这么狠嘛😳....',true);
           return true;
