@@ -33,7 +33,7 @@ export class xmz_ban extends plugin {
     let qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
     let para = e.msg.replace(/口球|#/gi,'').trim();
     let if_para = (para.includes(':')||para.includes('：')||para.includes(' '));
-    if (qq==''&&!if_para) {
+    if (qq!=''&&!if_para) {
       // @了成员，并没有使用分割参数
       if (para='') {
         qq = qq;
@@ -42,22 +42,24 @@ export class xmz_ban extends plugin {
         qq = qq;
         ban_time = para;
       }
-    } else if (qq!=''&&if_para) {
+    } else if (qq==''&&if_para) {
       // 没有@成员，但使用了分割参数
       let para_array = para.split(/[:：[ ]]/);
       if (para_array.length!=2) {
         e.reply('❌ 参数数量不正确，当前参数数量：'+para_array.length);
+        return true;
       } else {
         qq = para_array[0];
         ban_time = para_array[1];
       }
-    } else if (qq==''&&if_para) {
+    } else if (qq!=''&&if_para) {
       // @了成员并且使用了分割参数
       e.reply('❌ 请不要多次选择对象',true);
-    } else if (qq!=''&&!if_para) {
+      return true;
+    } else if (qq==''&&!if_para) {
       // 没有@成员也没有使用分割参数
       e.reply('❌ 请不要给自己戴口球！',true);
-      e.reply(`❌ 你让作者很难办哦，请截图以下信息反馈：\n\ne.msg：${e.msg}\nqq：${qq}\npara：${para}\n禁言时长：${ban_time}`);
+      return true;
     } else {
       // 其他情况
       e.reply(`❌ 你让作者很难办哦，请截图以下信息反馈：\n\ne.msg：${e.msg}\nqq：${qq}\npara：${para}`);
