@@ -103,7 +103,7 @@ export class xmz_ban extends plugin {
     try {
       if (
         Bot.pickGroup(e.group_id).pickMember(qq).is_admin ||
-        Bot.plckGroup(e.group_id).pickMember(qq).is_owner
+        Bot.pickGroup(e.group_id).pickMember(qq).is_owner
       ) {
         if (e.member.is_admin || e.member.is_owner) {
           e.reply('❌ 管理之间至于这么狠嘛😳....',true);
