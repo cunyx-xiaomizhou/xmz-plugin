@@ -44,7 +44,7 @@ export class xmz_ban extends plugin {
       }
     } else if (qq!=''&&if_para) {
       // 没有@成员，但使用了分割参数
-      let para_array = para.spilt(/[:：[ ]]/);
+      let para_array = para.split(/[:：[ ]]/);
       if (para_array.length!=2) {
         e.reply('❌ 参数数量不正确，当前参数数量：'+para_array.length);
         return true;
