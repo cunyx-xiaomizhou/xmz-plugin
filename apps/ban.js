@@ -100,14 +100,10 @@ export class xmz_ban extends plugin {
     if (ban_time < 60) {
       ban_time = Math.floor(ban_time * 60);
     }
-    e.reply(qq + await Bot.pickGroup(e.group_id).pickMember(qq).is_admin + '管理');
-    e.reply(qq + await Bot.pickGroup(e.group_id).pickMember(qq).is_owner + '群主');
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
+    let { is_admin, is_owner } = e.group.pickMember(qq);
     try {
-      if (
-        await Bot.pickGroup(e.group_id).pickMember(qq).is_admin ||
-        await Bot.pickGroup(e.group_id).pickMember(qq).is_owner
-      ) {
+      if (is_admin || is_owner) {
         if (e.member.is_admin || e.member.is_owner) {
           e.reply('❌ 管理之间至于这么狠嘛😳....',true);
           return true;
