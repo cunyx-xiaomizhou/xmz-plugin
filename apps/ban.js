@@ -96,13 +96,18 @@ export class xmz_ban extends plugin {
       ban_time = Math.floor(ban_time * 60);
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
-    if (Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_admin || Bot.pickGroup(e.group_id,true).pickMember(qq).is_owner) {
-      if (e.member.is_admin || e.member.is_owner) {
-        e.reply('❌ 管理之间至于这么狠嘛😳....',true);
-        return true;
+    try {
+      if (Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_admin || Bot.pickGroup(e.group_id,true).pickMember(qq).is_owner) {
+        if (e.member.is_admin || e.member.is_owner) {
+          e.reply('❌ 管理之间至于这么狠嘛😳....',true);
+          return true;
+        }
+        e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
+        qq = e.user_id;
       }
-      e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
-      qq = e.user_id;
+    } catch (err) {
+      e.reply('❌ 运行时发生错误：\n\n'+err,true);
+      return true;
     }
     let coin = Math.floor(ban_time/60) * Math.floor(ratio_ban);
     if (member.group < coin) {
