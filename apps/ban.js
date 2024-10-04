@@ -65,8 +65,9 @@ export class xmz_ban extends plugin {
       // 其他情况
       e.reply(`❌ 你让作者很难办哦，请截图以下信息反馈：\n\ne.msg：${e.msg}\nqq：${qq}\npara：${para}`);
     }
-    if (!ban_time>=-1) {
-      e.reply('❌ 禁言时长暂不支持非数字格式\n禁言时间：'+ban_time,true);
+    ban_time = +ban_time;
+    if (Number.isNaN(ban_time)) {
+      e.reply('❌ 禁言时长暂不支持非数字格式\n错误的禁言时间：'+ban_time,true);
       return true;
     }
     let json;
