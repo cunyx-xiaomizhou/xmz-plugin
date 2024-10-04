@@ -113,7 +113,7 @@ export class xmz_ban extends plugin {
       json[e.group_id][e.user_id] = newCoin;
       await fs.writeFile(coinFile, await xmz.tools.sent(json));
       await e.group.muteMember(qq, ban_time);
-      e.reply(`✅ 恭喜你使用${coin}米粥币成功收买TA，TA将“自愿*佩戴口球${ban_time}秒！`,true);
+      e.reply(`✅ 恭喜你使用${coin}米粥币成功收买TA，TA将“自愿”佩戴口球${ban_time}秒！`,true);
     }
     return true;
   }
