@@ -21,7 +21,8 @@ export class xmz_ban extends plugin {
       ]
     });
   }
-  async ban(e) {
+  async ban() {
+    let e = this.e;
     if (!e.group_id) {
       e.reply('❌ 本功能仅能在群聊使用',true);
       return false;
