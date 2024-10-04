@@ -1,5 +1,11 @@
 {
-    "config": {},
-    "tip": {},
+    "config": {
+        "ratio_ban": 2,
+        "ratio_save": 4
+    },
+    "tip": {
+        "ratio_ban": "消耗米粥币与禁言时长的比例",
+        "ratio_save": "消耗米粥币与解禁时长的比例"
+    },
     "version": "V 1.0.0"
 }
