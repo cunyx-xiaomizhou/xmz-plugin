@@ -33,6 +33,7 @@ export class xmz_ban extends plugin {
     let qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
     let para = e.msg.replace(/口球|#/gi,'').trim();
     let if_para = (para.includes(':')||para.includes('：')||para.includes(' '));
+    e.reply(`✅ 处理前的原始信息：\n\nqq：${qq}\npara：${para}\n是否分割：${if_para?'是':'否'}`);
     if (qq!=''&&!if_para) {
       // @了成员，并没有使用分割参数
       if (para='') {
