@@ -43,6 +43,10 @@ export class xmz_ban extends plugin {
         qq = qq;
         ban_time = para;
       }
+      if (qq==e.user_id) {
+        e.reply('❌ 您是SM同体嘛？',true);
+        return true;
+      }
     } else if (qq==''&&if_para) {
       // 没有@成员，但使用了分割参数
       let para_array = para.split(/:|;|[ ]/);
