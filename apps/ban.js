@@ -35,8 +35,13 @@ export class xmz_ban extends plugin {
     let if_para = (para.includes(':')||para.includes('：')||para.includes(' '));
     if (qq==''&&!if_para) {
       // @了成员，并没有使用分割参数
-      qq = qq;
-      ban_time = para;
+      if (para='') {
+        qq = qq;
+        ban_time = 5;
+      } else {
+        qq = qq;
+        ban_time = para;
+      }
     } else if (qq!=''&&if_para) {
       // 没有@成员，但使用了分割参数
       let para_array = para.spilt(/[:：[ ]]/);
@@ -50,6 +55,9 @@ export class xmz_ban extends plugin {
     } else if (qq!=''&&if_para) {
       // @了成员并且使用了分割参数
       e.reply('❌ 请不要多次选择对象',true);
+      return true;
+    } else if (qq!=''&&!if_para) {
+      e.reply('❌ 请不要给自己戴口球！',true);
       return true;
     } else {
       // 其他情况
