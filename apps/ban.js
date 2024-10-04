@@ -100,6 +100,7 @@ export class xmz_ban extends plugin {
       ban_time = Math.floor(ban_time * 60);
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
+    e.reply(`qq:${qq}\ne.user_id${e.user_id}`);
     try {
       if (
         Bot.pickGroup(e.group_id).pickMember(qq).is_admin ||
