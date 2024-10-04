@@ -48,12 +48,12 @@ export class xmz_ban extends plugin {
     }
     let member = {}; 
     if (e.group_id) {
-      member.group = (e.group_id in json&&qq in json[e.group_id]) ? json[e.group_id][qq] + '枚' : '未拥有';
+      member.group = (e.group_id in json&&e.user_id in json[e.group_id]) ? json[e.group_id][e.user_id] + '枚' : '未拥有';
     } else {
       member.group = false;
     }
-    member.mine = (member in json&&qq in json.member) ? json.member[qq] + '枚' : '未拥有';
-    e.reply(`✅ 被操作用户本群米粥币：${member.group}`,true);
+    member.mine = (member in json&&e.user_id in json.member) ? json.member[e.user_id] + '枚' : '未拥有';
+    e.reply(`✅ 操作用户本群米粥币：${member.group}\n私有米粥币：${member.mine}`,true);
     return true;
   }
 }
