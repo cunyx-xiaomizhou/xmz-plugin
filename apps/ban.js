@@ -101,12 +101,11 @@ export class xmz_ban extends plugin {
       ban_time = Math.floor(ban_time * 60);
     }
     let ratio_ban = await xmz_.config(func, 'ratio_ban', e.group_id);
+    let pick = await e.group.pickMember(qq);
     try {
-      let pick = await e.group.pickMember(qq);
       if (pick.is_admin || pick.is_owner) {
         e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
         qq = e.user_id;
-        return true;
       } else if (e.member.is_admin || e.member.is_owner) {
         e.reply('❌ 管理之间至于这么狠嘛😳....',true);
         return true;
@@ -119,7 +118,7 @@ export class xmz_ban extends plugin {
     if (member.group < coin) {
       e.reply(`❌ 收买TA需要${coin}枚米粥币，而你只有${member.group}枚米粥币\n去赚取或者兑换一些再来吧！`,true);
       return true;
-    } else {
+    } else if (!(e.member.is_owner||e.member.is_admin)&&!(pick.is_admin||pick.is_owner)){
       let newCoin = member.group - coin;
       json[e.group_id][e.user_id] = newCoin;
       await fs.writeFile(coinFile, await xmz.tools.sent(json));
