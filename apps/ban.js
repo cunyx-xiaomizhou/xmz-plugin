@@ -3,6 +3,7 @@ import xmz from '#xmz';
 import xmz_ from '#xmz_';
 import plugin from './../../../lib/plugins/plugin.js';
 
+const func = 'ban';
 const coinFile = `${xmz_.path}/data/coin.json`;
 
 export class xmz_ban extends plugin {
@@ -33,7 +34,6 @@ export class xmz_ban extends plugin {
     let qq = e.message.filter(item => item.type == 'at')?.map(item => item?.qq);
     let para = e.msg.replace(/口球|#/gi,'').trim();
     let if_para = (para.includes(':')||para.includes('：')||para.includes(' '));
-    e.reply(`✅ 处理前的原始信息：\n\nqq：${qq}\npara：${para}\n是否分割：${if_para?'是':'否'}`);
     if (qq!=''&&!if_para) {
       // @了成员，并没有使用分割参数
       if (para=='') {
@@ -65,7 +65,10 @@ export class xmz_ban extends plugin {
       // 其他情况
       e.reply(`❌ 你让作者很难办哦，请截图以下信息反馈：\n\ne.msg：${e.msg}\nqq：${qq}\npara：${para}`);
     }
-    e.reply(`✅ 信息读取完成\n\n【config】：\n被操作人：${qq}\n被禁言时长:${ban_time}`);
+    if (!ban_time>=-1) {
+      e.reply('❌ 禁言时长暂不支持非数字格式',true);
+      return true;
+    }
     let json;
     try {
       json = JSON.parse(await fs.readFile(coinFile));
@@ -83,7 +86,34 @@ export class xmz_ban extends plugin {
       e.reply('❌ 你在本群还未拥有米粥币，无法使用本功能',true);
       return true;
     }
-    
+    /**
+     * 这里留着以后适配中文单位
+     * @ban_time 禁言时长 单位秒
+     * 后续操作以此变量为准
+     */
+    if (ban_time < 60) {
+      ban_time = Math.floor(ban_time * 60);
+    }
+    let raito_ban = await xmz_.config(func, 'raito_ban', e.group_id);
+    if (Bot.pickGroup(e.group_id,true).pickMember(qq,true).is_admin || Bot.pickGroup(e.group_id,true).pickMember(qq).is_owner) {
+      if (e.member.is_admin || e.member.is_owner) {
+        e.reply('❌ 管理之间至于这么狠嘛😳....',true);
+        return true;
+      }
+      e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
+      qq = e.user_id;
+    }
+    let coin = Math.floor(ban_time/60) * Math.floor(ratio_ban);
+    if (member.group < coin) {
+      e.reply(`❌ 收买TA需要${coin}枚米粥币，而你只有${member.group}枚米粥币\n去赚取或者兑换一些再来吧！`,true);
+      return true;
+    } else {
+      let newCoin = member.group - coin;
+      json[e.group_id][e.user_id] = newCoin;
+      await fs.writeFile(coinFile, await xmz.tools.sent(json));
+      await e.group.muteMember(qq, ban_time);
+      e.reply(`✅ 恭喜你使用${coin}米粥币成功收买TA，TA将“自愿*佩戴口球${ban_time}秒！`,true);
+    }
     return true;
   }
 }
