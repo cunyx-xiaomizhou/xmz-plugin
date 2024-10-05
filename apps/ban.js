@@ -104,11 +104,12 @@ export class xmz_ban extends plugin {
     let pick = await e.group.pickMember(qq);
     try {
       if (pick.is_admin || pick.is_owner) {
+        if (e.member.is_admin || e.member.is_owner) {
+          e.reply('❌ 哥们，不至于不至于😢',true);
+          return true;
+        }
         e.reply('❌ 你....你干嘛.....(害怕)\n不可以给管理员和群主戴口球的啊！',true);
         qq = e.user_id;
-      } else if (e.member.is_admin || e.member.is_owner) {
-        e.reply('❌ 管理之间至于这么狠嘛😳....',true);
-        return true;
       }
     } catch (err) {
       e.reply('❌ 运行时发生错误：\n\n'+err,true);
