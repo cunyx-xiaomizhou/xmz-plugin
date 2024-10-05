@@ -24,6 +24,8 @@ export class xmz_plugin_setting extends plugin {
       }
       let newValue = e.msg.includes(/开启/gi) ? true : false;
       await xmz.tools.uc('xmz', 'state', newValue);
+      let cond = newValue ? '开启' : '关闭';
+      e.reply(`✅ 小米粥插件后门已更改为：${cond}`,true);
     } catch(err) {
       e.reply(`❌ 运行时出现错误：\n\n${err}`,true);
       return false;
