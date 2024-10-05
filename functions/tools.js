@@ -65,8 +65,8 @@ async function uc (fileName, key, Value='', group='') {
 
     const c = `${xmz_.path}/config/config/${fileName}.json`;
     json = JSON.parse(await fs.readFile(c));
-    json.tip = tip;
-    json.version = v;
+    json.tip = (tip=='') ? json.tip : tip;
+    json.version = (v=='') ? json.version : v;
 
     if (group === '') {
       json.config[key] = Value;
