@@ -4,12 +4,12 @@
         "api_key": ""
     },
     "tips": {
-        "uid": "用户中心显示的就是免费不要钱",
-        "api_key": "给自己打下一个坚定的基础吧",
+        "uid": "用户中心获取账号UID(即账号id)",
+        "api_key": "用户中心开发者中心获取",
         "message":[
-            "uid在网页把复制获取",
-            "api_key需要有一起的吗"
+            "UID获取对应链接：https://tools.xmz.netkj.com/user",
+            "api_key获取链接：https://tools.xmz.netkj.com/user/token"
         ]
     },
-    "version": "V 1.0.0"
+    "version": "V 1.0.1"
 }
