@@ -32,7 +32,7 @@ export class xmz_plugin_video extends plugin {
     const api_url = 'https://tools.xmz.netkj.com/api/API/video_url';
     let json;
     try {
-      json = JSON.parse((await fetch(`${api_url}?uid=${uid}&api_key=${api_key}&url=${url}`)).json());
+      json = await (await fetch(`${api_url}?uid=${uid}&api_key=${api_key}&url=${url}`)).json();
       if (json.code == 200) {
         if (json.data.type == 1) {
           await xmz.tools.sendMsg(e, [`视频标题：${json.data.title}`, '视频封面', json.data.cover_url]);
