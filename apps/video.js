@@ -28,7 +28,7 @@ export class xmz_plugin_video extends plugin {
       }
     }
     const urls = await xmz.tools.exu(e.msg);
-    let video_url = urls[0];
+    let url = urls[0];
     const api_url = 'https://tools.xmz.netkj.com/api/API/video_url';
     let json;
     try {
