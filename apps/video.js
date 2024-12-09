@@ -35,12 +35,12 @@ export class xmz_plugin_video extends plugin {
       json = JSON.parse(await fetch(`${api_url}?uid=${uid}&api_key=${api_key}&url=${url}`));
       if (json.code == 200) {
         if (json.data.type == 1) {
-          sendMsg(e, [`视频标题：${json.data.title}`, '视频封面', json.data.cover_url]);
+          await xmz.tools.sendMsg(e, [`视频标题：${json.data.title}`, '视频封面', json.data.cover_url]);
           e.reply(segment.video(json.data.video_url));
         } else {
           let arr_index = ['图集标题：'+json.data.title, '图集封面：', json.data.cover_url];
           let send_arr = [...arr_index,...json.data.pics];
-          sendMsg(e, send_arr);
+          await xmz.tools.sendMsg(e, send_arr);
         }
       } else {
         if (await xmz_.config('video', 'replyFail')) {
@@ -52,6 +52,6 @@ export class xmz_plugin_video extends plugin {
         e.repky(`❌ 出了点小问题：\n\n${err}`,true);
       }
     }
+    return false;
   }
-  return false;
 }
