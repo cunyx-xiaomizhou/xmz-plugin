@@ -49,7 +49,7 @@ export class xmz_plugin_video extends plugin {
       }
     } catch (err) {
       if (await xmz_.config('video', 'replyFail')) {
-        e.repky(`❌ 出了点小问题：\n\n${err}`,true);
+        e.reply(`❌ 出了点小问题：\n\n${err}`,true);
       }
     }
     return false;
