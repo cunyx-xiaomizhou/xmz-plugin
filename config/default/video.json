@@ -1,9 +1,11 @@
 {
     "config": {
+        "sw": false,
         "reply": true,
         "replyFail": true
     },
     "tips": {
+        "sw": "功能开关",
         "reply": "尝试解析是否回复信息",
         "replyFail": "解析失败时是否返回"
     },
