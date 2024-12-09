@@ -109,6 +109,11 @@ async function sendMsg(e, msg) {
   }
   return true;
 }
+function exu(text) {
+  const urlRegex = /https?:\/\/(?:www\.)?[^\s/$.?#].[^\s]*/g;
+  const urls = text.match(urlRegex);
+  return urls || [];
+}
 
 let tools = {
   random: random,
@@ -118,7 +123,8 @@ let tools = {
   getRes: getRes,
   randomArray: randomArray,
   uc: uc,
-  sendMsg: sendMsg
+  sendMsg: sendMsg,
+  exu: exu
 };
 
 export default tools;
