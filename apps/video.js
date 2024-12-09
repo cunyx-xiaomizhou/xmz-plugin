@@ -18,6 +18,7 @@ export class xmz_plugin_video extends plugin {
     });
   }
   async video(e) {
+    if (await xmz_.config('video', 'sw')) return false;
     const uid = await xmz_.config('xmzTools', 'uid');
     const api_key = await xmz_.config('xmzTools', 'api_key');
     if (!uid||!api_key||uid==''||api_key=='') {
