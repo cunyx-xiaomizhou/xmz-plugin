@@ -22,6 +22,7 @@ export class plugin_name extends plugin {
  * 以下为请求逻辑，若不懂相关内容，请勿更改
  */
 async function s(e, f) {
+  e.reply(await pu(await api_key(e, f), f));
   return await r(e, await pu(await api_key(e, f), f));
 }
 async function api_key(e, f) {
