@@ -29,10 +29,8 @@ if (!await xmz_.config('sj_Image', 'index')||!await xmz_.config('sj_Image', f)) 
   const uid = await xmz_.config('xmzTools', 'uid');
   const api_key = await xmz_.config('xmzTools', 'api_key');
   if (!uid||!api_key||uid==''||api_key=='') {
-    if (await xmz_.config('video', 'reply')) {
-      e.reply('❌ 解析失败，缺少小米粥工具箱uid或api_key',true);
-      return false;
-    }
+    e.reply('❌ 解析失败，缺少小米粥工具箱uid或api_key',true);
+    return false;
   }
   return [uid, api_key];
 }
