@@ -1,7 +1,6 @@
 import xmz from '#xmz';
 import xmz_ from '#xmz_';
 import fetch from 'node-fetch';
-const url = 'https://tools.xmz.netkj.com/api/API/';
 import plugin from './../../../lib/plugins/plugin.js';
 export class plugin_name extends plugin {
   constructor () {
@@ -16,18 +15,14 @@ export class plugin_name extends plugin {
       ]
     });
   }
-  async NaiLong(e) {
-    const f = 'NaiLong';
-    const api = await api_key(e, f);
-    const ru = `${url}${f}?uid=${api[0]}&api_key=${api[1]}`;
-    await r(e, ru);
-  }
-  async Doro(e) {
-    const f = 'Doro';
-    const api = await api_key(e, f);
-    const ru = `${url}${f}?uid=${api[0]}&api_key=${api[1]}`;
-    await r(e, ru);
-  }
+  async NaiLong(e) { await s(e, 'NaiLong'); } 
+  async Doro(e) { await s(e, 'Doro'); }
+}
+/**
+ * 以下为请求逻辑，若不懂相关内容，请勿更改
+ */
+async function s(e, f) {
+  return await r(e, await pu(await api_key(e, f), f));
 }
 async function api_key(e, f) {
 if (!await xmz_.config('sj_Image', 'index')||!await xmz_.config('sj_Image', f)) return false;
@@ -53,4 +48,8 @@ async function r(e, u) {
   } catch (err) {
     e.reply('❌ API请求时出现异常：\n'+err,true);
   }
+}
+async function pu(api, f) {
+  const url = 'https://tools.xmz.netkj.com/api/API/';
+  return `${url}sj_${f}?uid=${api[0]}&api_key=${[api[1]]}`;
 }
