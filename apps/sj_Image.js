@@ -12,7 +12,7 @@ export class plugin_name extends plugin {
         {reg:/^#?随机奶龙/,fnc:'NaiLong'},
         {reg:/^#?随机Doro/gi,fnc:'Doro'},
         {reg:/^#?随机乌萨奇/,fnc:'WuSaQi'},
-        {rwg:/^#?随机懒羊羊/,fnc:'Paddi'}
+        {reg:/^#?随机懒羊羊/,fnc:'Paddi'}
       ]
     });
   }
