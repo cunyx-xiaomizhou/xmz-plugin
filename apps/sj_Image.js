@@ -28,7 +28,7 @@ async function s(e, f) {
   const uid = await xmz_.config('xmzTools', 'uid');
   const api_key = await xmz_.config('xmzTools', 'api_key');
   if (!uid||!api_key||uid==''||api_key=='') {
-    e.reply('❌ 解析失败，缺少小米粥工具箱uid或api_key',true);
+    e.reply('❌ 请求失败，缺少小米粥工具箱uid或api_key',true);
     return false;
   }
 
