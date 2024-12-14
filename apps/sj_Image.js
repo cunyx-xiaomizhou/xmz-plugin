@@ -20,7 +20,11 @@ export class plugin_name extends plugin {
 }
 
 async function s(e, f) {
-  if (!await xmz_.config('sj_Image', 'index')||!await xmz_.config('sj_Image', f)) return false;
+  const index = await xmz_.config('sj_Image', 'index');
+  const func = await xmz_.config('sj_Image', f);
+  if (!index || func === false) {
+    return false;
+  }
   const uid = await xmz_.config('xmzTools', 'uid');
   const api_key = await xmz_.config('xmzTools', 'api_key');
   if (!uid||!api_key||uid==''||api_key=='') {
