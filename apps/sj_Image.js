@@ -49,5 +49,5 @@ async function r(e, u) {
 }
 async function pu(api, f) {
   const url = 'https://tools.xmz.netkj.com/api/API/';
-  return `${url}sj_${f}?uid=${api[0]}&api_key=${[api[1]]}`;
+  return `${url}sj_${f}?uid=${api[0]}&api_key=${api[1]}`;
 }
