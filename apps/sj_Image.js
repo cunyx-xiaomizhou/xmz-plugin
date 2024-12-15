@@ -30,6 +30,14 @@ export class random_ImageXmzPlugin extends plugin {
   async WuSaQi(e) { await s(e, 'WuSaQi'); }
   async Paddi(e) { await s(e, 'Paddi'); }
   async BV(e) { await s(e, 'BV', true); }
+  async Loopy(e) { await s(e, 'Loopy'); }
+  async XiaoMai(e) { await s(e, 'XiaoMai'); }
+  async Loong(e) { await s(e, 'Loong'); }
+  async Panda(e) { await s(e, 'Panda'); }
+  async ChaiJun(e) { await s(e, 'ChaiJun'); }
+  async XiongEr(e) { await s(e, 'XiongEr'); }
+  async Kuromi(e) { await s(e, 'Kuromi'); }
+  async XiaoBa(e) { await s(e, 'XiaoBa'); }
 }
 
 async function s(e, f, is_video = false) {
