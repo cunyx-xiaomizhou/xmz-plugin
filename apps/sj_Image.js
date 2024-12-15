@@ -1,7 +1,7 @@
 import xmz_ from '#xmz_';
 import fetch from 'node-fetch';
 import plugin from './../../../lib/plugins/plugin.js';
-export class plugin_name extends plugin {
+export class random_ImageXmzPlugin extends plugin {
   constructor () {
     super({
       name:"随机表情包",
@@ -10,10 +10,18 @@ export class plugin_name extends plugin {
       priority:1,
       rule:[
         {reg:/^#?随机奶龙/,fnc:'NaiLong'},
-        {reg:/^#?随机Doro/gi,fnc:'Doro'},
+        {reg:/^#?随机Doro/i,fnc:'Doro'},
         {reg:/^#?随机乌萨奇/,fnc:'WuSaQi'},
         {reg:/^#?随机懒羊羊/,fnc:'Paddi'},
-        {reg:/^#?随机美女(视频)?/,fnc:'BV'}
+        {reg:/^#?随机美女(视频)?/,fnc:'BV'},
+        {reg:/^#?随机Loopy/i,fnc:'Loopy'},
+        {reg:/^#?随机小埋/,fnc:'XiaoMai'},
+        {reg:/^#?随机龙图/,fnc:'Loong'},
+        {reg:/^#?随机熊猫/,fnc:'Panda'},
+        {reg:/^#?随机柴郡猫?/,fnc:'ChaiJun'},
+        {reg:/^#?随机(小)?熊二/,fnc:'XiongEr'},
+        {reg:/^#?随机库洛米/,fnc:'Kuromi'},
+        {reg:/^#?随机小八/,fnc:'XiaoBa'}
       ]
     });
   }
