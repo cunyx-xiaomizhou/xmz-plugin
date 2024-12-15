@@ -37,7 +37,7 @@ async function s(e, f, is_video = false) {
     return false;
   }
 
-  const url = `https://tools.xmz.netkj.com/api/API/sj_${f}?uid=${uid}&api_key=${api_key}`;
+  const url = `https://tools.xmz.netkj.com/api/API/sj/${f}?uid=${uid}&api_key=${api_key}`;
   
   try {
     const json = await (await fetch(url)).json();
