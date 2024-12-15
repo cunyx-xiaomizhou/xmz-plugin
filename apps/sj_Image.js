@@ -12,7 +12,8 @@ export class plugin_name extends plugin {
         {reg:/^#?随机奶龙/,fnc:'NaiLong'},
         {reg:/^#?随机Doro/gi,fnc:'Doro'},
         {reg:/^#?随机乌萨奇/,fnc:'WuSaQi'},
-        {reg:/^#?随机懒羊羊/,fnc:'Paddi'}
+        {reg:/^#?随机懒羊羊/,fnc:'Paddi'},
+        {reg:/^#?随机美女(视频)?/,fnc:'BV'}
       ]
     });
   }
@@ -20,9 +21,10 @@ export class plugin_name extends plugin {
   async Doro(e) { await s(e, 'Doro'); }
   async WuSaQi(e) { await s(e, 'WuSaQi'); }
   async Paddi(e) { await s(e, 'Paddi'); }
+  async BV(e) { await s(e, 'BV', true); }
 }
 
-async function s(e, f) {
+async function s(e, f, is_video = false) {
   const index = await xmz_.config('sj_Image', 'index');
   const func = await xmz_.config('sj_Image', f);
   if (!index || func === false) {
@@ -40,7 +42,16 @@ async function s(e, f) {
   try {
     const json = await (await fetch(url)).json();
     if (json.code == 200) {
-      e.reply(segment.image(json.data.url));
+      if (is_video == true) {
+        e.reply('这是一个视频，我尝试发送喽~',true);
+        try {
+          e.reply(segment.video(json.data.url));
+        } catch (err) {
+          e.reply('❌ 哦天哪！发送失败了，原因如下：\n'+err);
+        }
+      } else {
+        e.reply(segment.image(json.data.url));
+      }
     } else {
       e.reply('❌ API未返回数据：\n'+json.msg,true);
     }
