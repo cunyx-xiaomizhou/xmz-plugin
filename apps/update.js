@@ -13,7 +13,7 @@ export class xmzPlugin_update extends plugin {
 	  priority: 2000,
 	  rule: [
 		{
-		  reg: '^#?(xmz|小米粥)(插件)?(强制)?更新$',
+		  reg: /^#?(xmz|小米粥)(插件)?(强制)?更新$/gi,
 		  fnc: 'update_plugin',
 		}
 	  ]
