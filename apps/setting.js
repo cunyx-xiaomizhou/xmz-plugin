@@ -11,6 +11,10 @@ export class xmz_plugin_setting extends plugin {
         {
           reg:"^#?小米粥设置后门(开启|关闭)",
           fnc:"izhou"
+        },
+        {
+          reg: /#?xmz设置(新增|删除)(全局|禁言)(黑|白)名单(.*)?/gi,
+          fnc: 'updateMemberList'
         }
       ]
     });
@@ -30,5 +34,19 @@ export class xmz_plugin_setting extends plugin {
       e.reply(`❌ 运行时出现错误：\n\n${err}`,true);
       return false;
     }
+  }
+  async updateMemberList(e) {
+    try {
+      const state = await xmz.xmz(e);
+      if (state[0]) {
+        e.reply(`❌ ${state[1]}`,true);
+        return true;
+      }
+      /**
+       * 先读取全部黑白名单json.b/w.global
+       * 再读取功能黑白名单json.b/w.function
+       * 进行创建写入处理，暂时先不写
+       */
+    } catch(err) {}
   }
 }
