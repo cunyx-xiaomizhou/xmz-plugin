@@ -1,4 +1,5 @@
 import xmz from '#xmz';
+import xmz_ from '#xmz_';
 import plugin from './../../../lib/plugins/plugin.js';
 export class xmz_plugin_setting extends plugin {
   constructor () {
@@ -13,7 +14,7 @@ export class xmz_plugin_setting extends plugin {
           fnc:"izhou"
         },
         {
-          reg: /#?xmz设置(新增|删除)(全局|禁言)(黑|白)名单(.*)?/gi,
+          reg: /#?(xmz|小米粥)设置(新增|删除)(全局|禁言)(黑|白)名单(.*)?/gi,
           fnc: 'updateMemberList'
         }
       ]
@@ -42,6 +43,10 @@ export class xmz_plugin_setting extends plugin {
         e.reply(`❌ ${state[1]}`,true);
         return true;
       }
+      const dp = `${xmz_.path}/data`;
+      const fp = `${fp}/memberList.json`;
+      await xmz.tools.mkdir(dp);
+      try {} catch (err) {}
       /**
        * 先读取全部黑白名单json.b/w.global
        * 再读取功能黑白名单json.b/w.function
