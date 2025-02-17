@@ -23,9 +23,10 @@ export class xmz_plugin_memes extends plugin {
       e.reply('❌ 生成失败，还未设置小米粥工具箱UID和API_key')
     }
     let json;
+    let uin = (e.at==undefined) ? e.user_id : e.at;
     try {
       e.reply('开始生成，这可能需要一些时间.....',true);
-      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${e.at}`).json();
+      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${uin}`).json());
       if (json.code == 200) {
         e.reply(segment.image('base64://'+json.data.base64));
       } else {
