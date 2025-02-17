@@ -24,7 +24,7 @@ export class xmz_plugin_memes extends plugin {
     }
     let json;
     let uin = (e.at==undefined) ? e.user_id : e.at;
-    let typ = e.msg.replace(/#|wz|ry|王者|荣耀/gi, '';
+    let typ = e.msg.replace(/#|wz|ry|王者|荣耀/gi, '');
     typ = (typ==null||typ=='') ? '5v5' : typ;
     try {
       e.reply(`开始生成王者荣耀${typ}，这可能需要一些时间.....`,true);
