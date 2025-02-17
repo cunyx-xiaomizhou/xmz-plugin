@@ -10,7 +10,7 @@ export class xmz_plugin_memes extends plugin {
       priority:10086,
       rule:[
         {
-          reg:/#?((wz|王者)(ry|荣耀)?|5v5)(.*)?/gi,
+          reg:/#?((wz|王者)(ry|荣耀)?|(1|5)v1?5)(.*)?/gi,
           fnc:'王者荣耀'
         }
       ]
@@ -24,9 +24,11 @@ export class xmz_plugin_memes extends plugin {
     }
     let json;
     let uin = (e.at==undefined) ? e.user_id : e.at;
+    let typ = e.msg.replace(/#|wz|ry|王者|荣耀/gi, null);
+    typ = (typ==null||typ=='') ? '5v5' : typ;
     try {
       e.reply('开始生成，这可能需要一些时间.....',true);
-      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${uin}`)).json();
+      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${uin}&typ=${typ}`)).json();
       if (json.code == 200) {
         e.reply(segment.image('base64://'+json.data.base64));
       } else {
