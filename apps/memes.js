@@ -24,7 +24,7 @@ export class xmz_plugin_memes extends plugin {
     }
     let json;
     try {
-      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&url=${url}`)).json();
+      json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${e.at}`).json();
       if (json.code == 200) {
         e.reply(segment.image('base64://'+json.data.base64));
       } else {
