@@ -24,10 +24,10 @@ export class xmz_plugin_memes extends plugin {
     }
     let json;
     let uin = (e.at==undefined) ? e.user_id : e.at;
-    let typ = e.msg.replace(/#|wz|ry|王者|荣耀/gi, null);
+    let typ = e.msg.replace(/#|wz|ry|王者|荣耀/gi, '';
     typ = (typ==null||typ=='') ? '5v5' : typ;
     try {
-      e.reply('开始生成，这可能需要一些时间.....',true);
+      e.reply(`开始生成王者荣耀${typ}，这可能需要一些时间.....`,true);
       json = await (await fetch(`${meme_api}5v5?uid=${uid}&api_key=${api_key}&uin=${uin}&typ=${typ}`)).json();
       if (json.code == 200) {
         e.reply(segment.image('base64://'+json.data.base64));
