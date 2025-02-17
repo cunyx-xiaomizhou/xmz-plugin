@@ -10,7 +10,7 @@ export class xmz_plugin_memes extends plugin {
       priority:10086,
       rule:[
         {
-          reg:/#?(wz|王者)(ry|荣耀)?(1|5)v((1|2)?5)(.*)?/gi,
+          reg:/#?(wz|王者)(ry|荣耀)?(.*)v(.*)?/gi,
           fnc:'王者荣耀'
         }
       ]
