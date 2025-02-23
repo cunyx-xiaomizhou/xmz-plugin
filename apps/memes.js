@@ -17,6 +17,7 @@ export class xmz_plugin_memes extends plugin {
     });
   }
   async 王者荣耀(e) {
+    if (e.msg.includes('/')) return false; // 屏蔽卡片内容
     const uid = await xmz_.config('xmzTools', 'uid');
     const api_key = await xmz_.config('xmzTools', 'api_key');
     if (!uid||!api_key||uid==''||api_key=='') {
